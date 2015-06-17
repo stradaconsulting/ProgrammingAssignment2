@@ -34,23 +34,24 @@
 makeCacheMatrix <- function(x = matrix()) {
         inv <- NULL #initialize the inverse matrix to NULL
         
-        #SET usage myMatrix$set(...)
+        # SET usage myMatrix$set(...)
         set <- function(y) {
-                x   <<- y    #a new matrix is provided so we replace
-                inv <<- NULL #with a new matrix we re-initialize the inverse to NULL
+                x   <<- y    # a new matrix is provided so we replace
+                inv <<- NULL # with a new matrix we re-initialize the inverse to NULL
         }
         
-        #GET usage myMatrix$get()
-        get <- function() x #simply return the matrix we have
+        # GET usage myMatrix$get()
+        get <- function() x # simply return the matrix we have
         
-        #SETINVERSE usage myMatrix$setInverse(...)
-        setinverse <- function(i) inv <<- i #set the inverse matrix to the one provided
+        # SETINVERSE usage myMatrix$setInverse(...)
+        setinverse <- function(i) inv <<- i # set the inverse matrix to the one provided
         
-        #GETINVERSE usage myMatrix$getInverse()
-        getinverse <- funtion() inv #simply returns the inverse matrix we have
+        # GETINVERSE usage myMatrix$getInverse()
+        getinverse <- function() inv # simply returns the inverse matrix we have
         
-        #create the list of functions accessible
+        # create the list of functions accessible
         list(set = set, get = get, setinverse = setinverse, getinverse = getinverse)
+        
 }
 
 
