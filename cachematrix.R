@@ -27,7 +27,7 @@
 ##
 ## Usage:
 ## - upon first creating we set a matrix to variable using this function
-##   eg - myMatrix <- makeCacheMatrix(matrix(c(1,0.5, 0.5, 1), 2, 2) #makes a 2x2 matrix
+##   eg - myMatrix <- makeCacheMatrix(matrix(c(4,3, 3, 2), 2, 2) #makes a 2x2 matrix
 ## - get the matrix value: myMatrix$get()  #get back what was stored
 ## - set a new matrix: myMatrix$set(matrix(c(2,.25, .25, 2),2,2))
 
@@ -55,8 +55,30 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
+## The cacheSolve function is used in conjunction with the stored variable created through makeCacheMatrix()
+## defined above.  With the cacheSolve we pass the variable previously created and are essentially requesting 
+## the inverse matrix of what was originally provided.
+## $getinverse() is called
+## if this result is NOT NULL
+##      then we simply return the inverse that was previously created
+## if the result is NULL 
+##     we pull the original matrix ($get)
+##     calculate the inverse using the solve() function
+##     we store the inverse using $setinverse
+##     finally we return the inverse we just calculated 
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
+        
+        i <- x$getinverse()                              #get the inverse value
+        if(!is.null(i)) {                                #if inverse is not NULL
+                message("Getting cached inverse matrix") #provide message stating we are using cached inverse
+                return(i)                                #return the inverse matrix we got
+        }
+                
+        #if the inverse matrix IS NULL
+        data <- x$get()       #pull the original matrix
+        i <- solve(data, ...) #determine inverse and store in 'i'
+        x$setinverse(i)       #set the inverse into our previously created object
+        i                     #return the inverse matrix
 }
